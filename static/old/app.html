@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="Miha">
+
+	<head>
+
+		<title>Miha</title>
+
+		<meta charset="utf-8">
+		<meta name="author" content="Michael Harbach">
+		<meta name="description" content="Miha Application">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- <link rel="apple-touch-icon" href="">
+		<link rel="apple-touch-startup-image" href=""> -->
+
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/app.css">
+		
+	</head>
+
+	<body ng-controller="BodyController">
+
+		<div id="loading">
+			<!-- <div>Connecting</div>
+			<i class="fa fa-spinner fa-spin fa-3x"></i> -->
+		</div>
+
+		<div ng-if="!$root.user" ng-controller="AuthenticationController">
+			<form name="logInForm" class="flex">
+				<input ng-model="email" ng-required="required" ng-maxlength="emailMaxLength" ng-minlength="emailMinLength" name="email" type="email" placeholder="Email">
+				<input ng-model="password" ng-required="required" ng-maxlength="passwordMaxLength" ng-minlength="passwordMinLength" name="password" type="password" placeholder="Password">
+				<div ng-click="attemptLogIn();" class="button">Submit</div>
+			</form>
+		</div>
+
+		<div ng-if="$root.user" ng-controller="UserController">
+			Welcome {{user.email}}!
+			<div ng-click="attemptLogOut();" class="button">Log Out</div>
+		</div>
+
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.4/moment-timezone-with-data.min.js"></script>
+		<!-- <script src="/static/system.js"></script> -->
+		<!-- <script src="/static/scene.js"></script> -->
+		<script src="/static/app.js"></script>
+
+	</body>
+
+</html>
