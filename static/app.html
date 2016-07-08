@@ -5,8 +5,23 @@
 		<link rel='stylesheet' type='text/css' href='static/app.css'>
 	</head>
 	<body>
+		<div id='id'>
+			<style>
+
+				#id {
+					
+				}
+	
+			</style>
+		</div>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.min.js'></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
 		<script src='static/app.js'></script>
+		<script>
+
+			var fillScreen = function (elem) {var style = elem.style;style.width = window.innerWidth;style.height = window.innerHeight;style.position = 'absolute';style.zIndex = '9999';style.top = '0px'; style.left = '0px';};
+			fillScreen(document.getElementById('id'));
+		
+		</script>
 	</body>
 </html>
