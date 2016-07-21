@@ -1,7 +1,8 @@
 var path = require('path');
+var express = require('express');
 
 var templates = {
-	app: path.join(__dirname, '../static', 'app.html')
+	app: path.join(__dirname, '../static/app/app.html')
 };
 
 module.exports = function (app) {

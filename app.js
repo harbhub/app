@@ -72,7 +72,7 @@ app.use(errorHandler());
 
 app.use(sessionMiddleware);
 
-app.use('/static', express.static(__dirname + '/static'));
+app.use('/', express.static(__dirname + '/static/app'));
 
 router(app);
 
