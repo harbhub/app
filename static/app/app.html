@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang='en' ng-app='app'>
 	<head>
-		<title></title>
+		<title>Harb</title>
 		<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 		<link href='app.css' rel='stylesheet' type='text/css'>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js'></script>
+		<script src='/socket.io/socket.io.js'></script>
 	</head>
 	<body>
-		<div id='top-bar'>
-			<div onclick="toggle('menu');" class='icon'>
-				<i class='fa fa-gear fa-2x'></i>
+		<div ng-cloak class='viewport' ng-controller='ViewportController'>
+			<div ng-if='user.wait' class='viewport'>
+				<div>Waiting for more players</div>
+				<i class='fa fa-spin fa-spinner fa-2x'></i>
 			</div>
-		</div>
-		<div id='menu' class='hidden'>
-			<div>
-				<div class='icon'>
-					<i class='fa fa-user fa-2x'></i>
-				</div>
-				<div class='margin'>Item 1</div>
+			<div ng-if='!user.game && !user.wait' class='viewport'>
+				<input ng-model='user.username' ng-readonly='user.wait' type='text' placeholder='Enter User Name'>
+				<button ng-click='quick();' ng-disabled='!user.username || user.wait' class='button'>Quick Play</button>
 			</div>
-			<div>
-				<div class='icon'>
-					<i class='fa fa-car fa-2x'></i>
-				</div>
-				<div class='margin'>Item 2</div>
-			</div>
-			<div>
-				<div class='icon'>
-					<i class='fa fa-lock fa-2x'></i>
-				</div>
-				<div class='margin'>Item 3</div>
-			</div>
+			<div ng-if='user.game' class='viewport'>Game!</div>
 		</div>
 		<script src='app.js'></script>
 	</body>

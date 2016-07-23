@@ -13,3 +13,9 @@ Simple Web Hosting Application
 # Games
 
 Coming Soon
+
+# Setting Up
+
+[Digital Ocean $5 Droplet](https://codeforgeek.com/2016/03/hosting-node-js-app-to-digitalocean-server/ "Digital Ocean $5 Droplet")
+
+Install NodeJS, MySQL, and Redis.

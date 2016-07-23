@@ -1,42 +1,42 @@
 var util = require('util');
+var uuid = require('uuid').v4;
+
 var users = {};
+var games = {};
+var queue = [];
+var room = uuid();
 
 module.exports = function (ioServer) {
 	ioServer.sockets.on('connection', function (socket) {
-		
+
 		console.log('Socket', socket.id, 'Connected');
-		socket.emit('Initialize', {user: socket.request.session.user || null});
-		socket.on('AttemptLogIn', function (data) {
-			console.log('AttemptLogIn Received from Socket', socket.id, util.inspect(data));
-			var user;
-			if (!users[data.email]) {
-				users[data.email] = {
-					password: data.password
-				};
-				socket.request.session.user = users[data.email];
-				socket.request.session.save();
-				socket.emit('LogInResults', {
-					user: {email: data.email}
-				});
-			} else if (users[data.email] && users[data.email].password === data.password) {
-				socket.request.session.user = users[data.email];
-				socket.request.session.save();
-				socket.emit('LogInResults', {
-					user: {email: data.email}
-				});
-			} else {
-				socket.request.session.user = undefined;
-				socket.request.session.save();
-				socket.emit('LogInResults', {
-					error: 'Invalid Credentials'
-				});
-			}
+		
+		socket.on('disconnect', function () {
+			console.log('Socket', socket.id, 'Disconnected');
 		});
-		socket.on('AttemptLogOut', function (data) {
-			console.log('AttemptLogOut Received from Socket', socket.id, util.inspect(data));
-			socket.request.session.user = undefined;
-			socket.request.session.save();
-			socket.emit('LogOutResults', {error: null})
+		
+		socket.on('quick', function (data) {
+			console.log('Quick Play');
+			data.id = data.id || uuid();
+			data.socket = socket.id;
+			data.room = room;
+			users[data.id] = data;
+			queue.push(data);
+			socket.join(room);
+			if (queue.length === 4) {
+				console.log('Starting Game');
+				var game = {
+					id: uuid(),
+					room: room,
+					players: queue
+				};
+				ioServer.to(room).emit('start', {game: game, queue: queue, user: data});
+				queue = [];
+				room = uuid();
+			} else {
+				console.log('Waiting');
+				socket.emit('wait', {queue: queue, user: data});
+			}
 		});
 
 	});	

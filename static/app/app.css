@@ -3,115 +3,77 @@
 	padding: 0;
 }
 
-title {
-	display: none;
-}
-
 body {
-	padding-top: 48px;
-	display: flex;
+	overflow: hidden;
 	width: 100vw;
-	color: black;
-	font-family: sans-serif;
-	font-size: 16px;
-	font-weight: normal;
-	line-height: 1;
+	height: 100vh;
 }
 
-#top-bar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: black;
-	color: white;
+.viewport {
 	width: 100vw;
-	height: 48px;
-	/* border-bottom: 1px solid black; */
-	display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-#menu {
-	position: fixed;
-	top: 48px;
-	left: 0;
-	background: black;
-	color: white;
-	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	align-content: center;
+	justify-content: center;
 	align-items: center;
-	justify-content: flex-start;
-	border-top: 1px solid white;
+	align-content: center;
+	background: white;
+	color: #184B5C;
+	font-size: 20px;
+	font-weight: bold;
 }
 
-#menu > div {
-	width: 100vw;
-	height: 48px;
+.button {
 	display: flex;
-	align-content: center;
+	justify-content: center;
 	align-items: center;
-	justify-content: flex-start;
+	align-content: center;
+	min-width: 40px;
+	max-width: 200px;
+	background: #D3EAF2;
+	padding: 10px;
+	border: 1px solid #90C3D4;
+	color: #184B5C;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 10px;
 	cursor: pointer;
+	margin: 5px;
+	user-select: none;
+	outline: none;
 }
 
-#menu > div:hover {
+.button:hover {
+	border: 1px solid green;
+}
+
+.button[disabled='disabled'] {
 	opacity: 0.5;
 }
 
-.margin {
-	margin: 4px;
-}
-
-.hidden {
-	display: none !important;
-}
-
-.icon {
-	margin: 4px;
+input {
 	display: flex;
-	width: 32px;
-	height: 32px;
-	align-content: center;
-	align-items: center;
 	justify-content: center;
-	cursor: pointer;
-}
-
-.icon:hover {
-	opacity: .5;
-}
-
-.center {
-	display: flex;
-	align-content: center;
 	align-items: center;
-	justify-content: center;
-}
-
-/* .title {
-
-	width: 100%;
-	height: 24px;
-
-	font-size: 1.5em;
+	align-content: center;
+	min-width: 40px;
+	max-width: 200px;
+	background: #D3EAF2;
+	padding: 10px;
+	border: 1px solid #90C3D4;
+	color: #184B5C;
+	font-size: 20px;
 	font-weight: bold;
-
-	padding: 4px 0;
-
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 5px;
+	outline: none;
 }
 
-.column {
-
-	flex-direction: column;
-
+input::-webkit-input-placeholder {
+	color: #184B5C;
 }
 
-.wide {
-
-	width: 100%;
-
-} */
+input[readonly='readOnly'] {
+	opacity: 0.5;
+}
